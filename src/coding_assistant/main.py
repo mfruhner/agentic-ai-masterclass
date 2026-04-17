@@ -10,6 +10,8 @@ from rich.markdown import Markdown
 from coding_assistant.deps import AgentDeps
 from coding_assistant.utils import get_env
 from coding_assistant.capabilities.file_operations import FileOperations
+from coding_assistant.capabilities.reasoning_effort import ReasoningEffort
+from coding_assistant.capabilities.skills import Skills
 
 _INSTRUCTIONS = (
     "You are a Python coding agent.\n"
@@ -41,9 +43,8 @@ async def run_agent() -> None:
     agent = Agent[AgentDeps](
         model=model,
         instructions=_INSTRUCTIONS,
-        capabilities=[FileOperations()],
+        capabilities=[FileOperations(), ReasoningEffort(), Skills()],
         deps_type=AgentDeps,
-
     )
 
     # 4. Prompt the user for input, run the agent, and print the output

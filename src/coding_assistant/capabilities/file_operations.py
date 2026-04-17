@@ -93,7 +93,7 @@ class FileOperations(AbstractCapability[Any]):
         return toolset
     
 
-    async def before_tool_execute(self, ctx: RunContext[Any], *, call: ToolCallPart, tool_def: ToolDefinition, args: dict[str, Any]) -> dict[str, Any]:
+    async def before_tool_execute(self, ctx: RunContext[AgentDeps], *, call: ToolCallPart, tool_def: ToolDefinition, args: dict[str, Any]) -> dict[str, Any]:
         if call.tool_name == "search_files":
             ctx.deps.console.log(f"Searching for files: {args.get('pattern')}")
         elif call.tool_name == "read_file":
